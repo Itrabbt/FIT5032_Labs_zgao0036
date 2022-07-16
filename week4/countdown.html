@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<h3>This is a TimeCount Page.</h3>
+	</body>
+	<script>
+		var timeCount = 0;
+		var myfunc = setInterval(function(){
+			timeCount = timeCount + 1;
+			
+			alert("TimeCount: " + timeCount + " s");
+			
+			if(timeCount >= 10){
+				clearInterval(myfunc);
+				alert("Congrats!");
+			}
+		}, 1000);
+	</script>
+</html>
