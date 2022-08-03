@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 
 namespace FIT5032_Week08A.Utils
 {
@@ -24,5 +25,17 @@ namespace FIT5032_Week08A.Utils
             var response = client.SendEmailAsync(msg);
         }
 
+
+        public void Send(String toEmail, String subject, String contents, string attach)
+        {
+            var client = new SendGridClient(API_KEY);
+            var from = new EmailAddress("zgao0036@student.monash.edu", "FIT5032 Example Email User");
+            var to = new EmailAddress(toEmail, "");
+            var plainTextContent = contents;
+            var htmlContent = "<p>" + contents + "</p>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            msg.AddAttachment(attach, contents);
+            var response = client.SendEmailAsync(msg);
+        }
     }
 }
