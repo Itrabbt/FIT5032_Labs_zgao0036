@@ -1,4 +1,4 @@
-﻿@model FIT5032_EcareWebApplication.Models.User
+﻿@model FIT5032_EcareWebApplication.Models.Customer
 
 @{
     ViewBag.Title = "Details";
@@ -11,21 +11,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.userName)
+            @Html.DisplayNameFor(model => model.name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.userName)
+            @Html.DisplayFor(model => model.name)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.email)
         </dt>
@@ -77,6 +68,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.userId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

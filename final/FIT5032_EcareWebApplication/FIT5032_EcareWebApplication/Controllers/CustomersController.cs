@@ -6,111 +6,117 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using FIT5032_EcareWebApplication.Models;
 
 namespace FIT5032_EcareWebApplication.Controllers
 {
-    public class UsersController : Controller
+    public class CustomersController : Controller
     {
         private FIT5032_EcareModelContainer db = new FIT5032_EcareModelContainer();
 
-        // GET: Users
+        // GET: Customers
         public ActionResult Index()
         {
-            return View(db.UserSet.ToList());
+            return View(db.CustomerSet.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.UserSet.Find(id);
-            if (user == null)
+            Customer customer = db.CustomerSet.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(customer);
         }
 
-        // GET: Users/Create
+        // GET: Customers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Customers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "userId,userName,password,email,sex,birthday,bloodType,allergies,situation")] User user)
+        [Authorize]
+        public ActionResult Create([Bind(Include = "id,name,email,sex,birthday,bloodType,allergies,situation")] Customer customer)
         {
+            customer.userId = User.Identity.GetUserId();
+            ModelState.Clear();
+            TryValidateModel(customer);
+
             if (ModelState.IsValid)
             {
-                db.UserSet.Add(user);
+                db.CustomerSet.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(customer);
         }
 
-        // GET: Users/Edit/5
+        // GET: Customers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.UserSet.Find(id);
-            if (user == null)
+            Customer customer = db.CustomerSet.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(customer);
         }
 
-        // POST: Users/Edit/5
+        // POST: Customers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "userId,userName,password,email,sex,birthday,bloodType,allergies,situation")] User user)
+        public ActionResult Edit([Bind(Include = "id,name,email,sex,birthday,bloodType,allergies,situation")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(customer);
         }
 
-        // GET: Users/Delete/5
+        // GET: Customers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.UserSet.Find(id);
-            if (user == null)
+            Customer customer = db.CustomerSet.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(customer);
         }
 
-        // POST: Users/Delete/5
+        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.UserSet.Find(id);
-            db.UserSet.Remove(user);
+            Customer customer = db.CustomerSet.Find(id);
+            db.CustomerSet.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

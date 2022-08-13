@@ -14,6 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.doctorName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hospital.hospitalName)
+        </th>
         @*<th>
             @Html.DisplayNameFor(model => model.password)
         </th>*@
@@ -26,38 +29,33 @@
         <th>
             @Html.DisplayNameFor(model => model.score)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hospital.hospitalName)
-        </th>
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.doctorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.score)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hospital.hospitalName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.doctorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.doctorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.doctorId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.doctorName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Hospital.hospitalName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.score)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+    </td>
+</tr>
 }
 
 </table>

@@ -1,4 +1,4 @@
-﻿@model FIT5032_EcareWebApplication.Models.User
+﻿@model FIT5032_EcareWebApplication.Models.Customer
 
 @{
     ViewBag.Title = "Delete";
@@ -12,21 +12,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.userName)
+            @Html.DisplayNameFor(model => model.name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.userName)
+            @Html.DisplayFor(model => model.name)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.email)
         </dt>

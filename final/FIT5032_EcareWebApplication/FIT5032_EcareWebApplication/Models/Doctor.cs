@@ -6,7 +6,6 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
 
 namespace FIT5032_EcareWebApplication.Models
 {
@@ -21,22 +20,13 @@ namespace FIT5032_EcareWebApplication.Models
             this.Service = new HashSet<Service>();
         }
     
-        public int doctorId { get; set; }
-
-        [Required]
-        [Display(Name ="Your Name")]
+        public int id { get; set; }
         public string doctorName { get; set; }
-
-        [Required, Display(Name ="Set your password")]
-        [DataType(DataType.Password)]
-        public string password { get; set; }
-
-        [Required, Display(Name ="Your Email")]
-        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
         public string description { get; set; }
         public string score { get; set; }
-        public int Hospital_hospitalId { get; set; }
+        public int Hospital_id { get; set; }
+        public string userId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service> Service { get; set; }

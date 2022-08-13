@@ -20,7 +20,7 @@ namespace FIT5032_EcareWebApplication.Models
             this.Doctor = new HashSet<Doctor>();
         }
     
-        public int hospitalId { get; set; }
+        public int id { get; set; }
         public string hospitalName { get; set; }
         public string location { get; set; }
         public string score { get; set; }

@@ -10,112 +10,116 @@ using FIT5032_EcareWebApplication.Models;
 
 namespace FIT5032_EcareWebApplication.Controllers
 {
-    public class DoctorsController : Controller
+    public class ServicesController : Controller
     {
         private FIT5032_EcareModelContainer db = new FIT5032_EcareModelContainer();
 
-        // GET: Doctors
+        // GET: Services
         public ActionResult Index()
         {
-            var doctorSet = db.DoctorSet.Include(d => d.Hospital);
-            return View(doctorSet.ToList());
+            var serviceSet = db.ServiceSet.Include(s => s.Customer).Include(s => s.Doctor);
+            return View(serviceSet.ToList());
         }
 
-        // GET: Doctors/Details/5
+        // GET: Services/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Doctor doctor = db.DoctorSet.Find(id);
-            if (doctor == null)
+            Service service = db.ServiceSet.Find(id);
+            if (service == null)
             {
                 return HttpNotFound();
             }
-            return View(doctor);
+            return View(service);
         }
 
-        // GET: Doctors/Create
+        // GET: Services/Create
         public ActionResult Create()
         {
-            ViewBag.Hospital_hospitalId = new SelectList(db.HospitalSet, "hospitalId", "hospitalName");
+            ViewBag.Customer_id = new SelectList(db.CustomerSet, "id", "name");
+            ViewBag.Doctor_id = new SelectList(db.DoctorSet, "id", "doctorName");
             return View();
         }
 
-        // POST: Doctors/Create
+        // POST: Services/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,doctorName,email,description,score,Hospital_hospitalId")] Doctor doctor)
+        public ActionResult Create([Bind(Include = "id,price,content,score,date,Customer_id,Doctor_id")] Service service)
         {
             if (ModelState.IsValid)
             {
-                db.DoctorSet.Add(doctor);
+                db.ServiceSet.Add(service);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Hospital_hospitalId = new SelectList(db.HospitalSet, "hospitalId", "hospitalName", doctor.Hospital_id);
-            return View(doctor);
+            ViewBag.Customer_id = new SelectList(db.CustomerSet, "id", "name", service.Customer_id);
+            ViewBag.Doctor_id = new SelectList(db.DoctorSet, "id", "doctorName", service.Doctor_id);
+            return View(service);
         }
 
-        // GET: Doctors/Edit/5
+        // GET: Services/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Doctor doctor = db.DoctorSet.Find(id);
-            if (doctor == null)
+            Service service = db.ServiceSet.Find(id);
+            if (service == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Hospital_hospitalId = new SelectList(db.HospitalSet, "hospitalId", "hospitalName", doctor.Hospital_id);
-            return View(doctor);
+            ViewBag.Customer_id = new SelectList(db.CustomerSet, "id", "name", service.Customer_id);
+            ViewBag.Doctor_id = new SelectList(db.DoctorSet, "id", "doctorName", service.Doctor_id);
+            return View(service);
         }
 
-        // POST: Doctors/Edit/5
+        // POST: Services/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,doctorName,email,description,score,Hospital_hospitalId")] Doctor doctor)
+        public ActionResult Edit([Bind(Include = "id,price,content,score,date,Customer_id,Doctor_id")] Service service)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(doctor).State = EntityState.Modified;
+                db.Entry(service).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Hospital_hospitalId = new SelectList(db.HospitalSet, "id", "hospitalName", doctor.Hospital_id);
-            return View(doctor);
+            ViewBag.Customer_id = new SelectList(db.CustomerSet, "id", "name", service.Customer_id);
+            ViewBag.Doctor_id = new SelectList(db.DoctorSet, "id", "doctorName", service.Doctor_id);
+            return View(service);
         }
 
-        // GET: Doctors/Delete/5
+        // GET: Services/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Doctor doctor = db.DoctorSet.Find(id);
-            if (doctor == null)
+            Service service = db.ServiceSet.Find(id);
+            if (service == null)
             {
                 return HttpNotFound();
             }
-            return View(doctor);
+            return View(service);
         }
 
-        // POST: Doctors/Delete/5
+        // POST: Services/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Doctor doctor = db.DoctorSet.Find(id);
-            db.DoctorSet.Remove(doctor);
+            Service service = db.ServiceSet.Find(id);
+            db.ServiceSet.Remove(service);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

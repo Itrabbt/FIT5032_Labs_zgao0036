@@ -25,7 +25,7 @@ namespace FIT5032_EcareWebApplication.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> UserSet { get; set; }
+        public virtual DbSet<Customer> CustomerSet { get; set; }
         public virtual DbSet<Service> ServiceSet { get; set; }
         public virtual DbSet<Doctor> DoctorSet { get; set; }
         public virtual DbSet<Hospital> HospitalSet { get; set; }

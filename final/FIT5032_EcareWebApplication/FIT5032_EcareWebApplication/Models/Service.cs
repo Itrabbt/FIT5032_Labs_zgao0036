@@ -14,15 +14,15 @@ namespace FIT5032_EcareWebApplication.Models
     
     public partial class Service
     {
-        public int serviceId { get; set; }
+        public int id { get; set; }
         public string price { get; set; }
         public string content { get; set; }
         public string score { get; set; }
         public string date { get; set; }
-        public int User_userId { get; set; }
-        public int Doctor_doctorId { get; set; }
+        public int Customer_id { get; set; }
+        public int Doctor_id { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual Doctor Doctor { get; set; }
     }
 }

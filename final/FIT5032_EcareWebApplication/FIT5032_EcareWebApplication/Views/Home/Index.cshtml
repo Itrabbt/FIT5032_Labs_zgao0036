@@ -18,16 +18,21 @@
     <p class="btn btn-default btn-sm">Learn more &raquo;</p>
 </div>
 
-<div class="row">
-    <div class="col-lg-6">
-        <img src="~/images/patient.png" width="48"/>
-        <p class="btn btn-primary btn-sm">You are a customer &raquo;</p>
+
+@if (Request.IsAuthenticated) { 
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="~/images/patient.png" width="48" />
+            @Html.ActionLink("You are a customer >>", "Create", "Customers")
+        </div>
+        <div class="col-lg-6">
+            <img src="~/images/doctor.png" width="48" />
+            @Html.ActionLink("You are a customer >>", "Create", "Doctors")
+            @*<p class="btn btn-primary btn-sm">You are a doctor &raquo;</p>*@
+        </div>
     </div>
-    <div class="col-lg-6">
-        <img src="~/images/doctor.png" width="48"/>
-        <p class="btn btn-primary btn-sm">You are a doctor &raquo;</p>
-    </div>
-</div>
+}
+
 
 @*<div class="row">
     <div class="col-md-4">

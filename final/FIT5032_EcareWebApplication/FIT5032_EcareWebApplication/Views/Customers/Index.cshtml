@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FIT5032_EcareWebApplication.Models.User>
+﻿@model IEnumerable<FIT5032_EcareWebApplication.Models.Customer>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.userName)
+            @Html.DisplayNameFor(model => model.name)
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.password)
@@ -23,9 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.sex)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.birthday)
-        </th>*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.bloodType)
         </th>
@@ -41,10 +41,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.userName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
+            @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.email)
@@ -65,9 +62,9 @@
             @Html.DisplayFor(modelItem => item.situation)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.userId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.userId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.userId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
     </tr>
 }

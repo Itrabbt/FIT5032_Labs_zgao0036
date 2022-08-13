@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8b68a0d4fc3a4528b70ec9f6ac9e1f03" Name="Diagram1" >
-        <EntityTypeShape EntityType="FIT5032_EcareModel.User" Width="1.5" PointX="1.875" PointY="0.5" />
+        <EntityTypeShape EntityType="FIT5032_EcareModel.Customer" Width="1.5" PointX="1.875" PointY="0.5" />
         <EntityTypeShape EntityType="FIT5032_EcareModel.Service" Width="1.5" PointX="4.5" PointY="0.5" />
-        <AssociationConnector Association="FIT5032_EcareModel.UserService" />
         <EntityTypeShape EntityType="FIT5032_EcareModel.Doctor" Width="1.5" PointX="7.5" PointY="0.625" />
-        <AssociationConnector Association="FIT5032_EcareModel.DoctorService" />
         <EntityTypeShape EntityType="FIT5032_EcareModel.Hospital" Width="1.5" PointX="10.25" PointY="0.875" />
+        <AssociationConnector Association="FIT5032_EcareModel.CustomerService" />
+        <AssociationConnector Association="FIT5032_EcareModel.DoctorService" />
         <AssociationConnector Association="FIT5032_EcareModel.HospitalDoctor" />
       </Diagram>
     </edmx:Diagrams>

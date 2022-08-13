@@ -11,24 +11,32 @@ namespace FIT5032_EcareWebApplication.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class User
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Customer()
         {
             this.Service = new HashSet<Service>();
         }
     
-        public int userId { get; set; }
-        public string userName { get; set; }
-        public string password { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        [Required]
+        [EmailAddress]
         public string email { get; set; }
+
+        [Required]
         public string sex { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
         public string birthday { get; set; }
         public string bloodType { get; set; }
         public string allergies { get; set; }
         public string situation { get; set; }
+        public string userId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service> Service { get; set; }
