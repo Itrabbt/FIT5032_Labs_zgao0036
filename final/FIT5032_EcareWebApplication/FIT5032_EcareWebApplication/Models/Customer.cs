@@ -11,8 +11,7 @@ namespace FIT5032_EcareWebApplication.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,15 +22,8 @@ namespace FIT5032_EcareWebApplication.Models
     
         public int id { get; set; }
         public string name { get; set; }
-        [Required]
-        [EmailAddress]
         public string email { get; set; }
-
-        [Required]
         public string sex { get; set; }
-
-        [Required]
-        [DataType(DataType.DateTime)]
         public string birthday { get; set; }
         public string bloodType { get; set; }
         public string allergies { get; set; }

@@ -15,6 +15,20 @@ namespace FIT5032_EcareWebApplication.Controllers
     {
         private FIT5032_EcareModelContainer db = new FIT5032_EcareModelContainer();
 
+        public ActionResult Direct()
+        {
+            String userId = User.Identity.GetUserId();
+            Customer customerExist = db.CustomerSet.FirstOrDefault(u => u.userId == userId);
+            if (customerExist == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Doctors");
+            }
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
